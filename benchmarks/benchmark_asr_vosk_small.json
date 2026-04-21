@@ -1,0 +1,183 @@
+{
+  "model": "vosk-model-small-ru-0.22",
+  "total_phrases": 21,
+  "exact_match_accuracy": 0.2857,
+  "total_wer": 0.3708,
+  "total_cer": 0.074,
+  "general_wer": 0.1818,
+  "names_wer": 0.4328,
+  "substitutions": 28,
+  "deletions": 1,
+  "insertions": 4,
+  "hits": 60,
+  "details": [
+    {
+      "phrase_id": 1,
+      "reference": "кто заведующий кафедрой",
+      "hypothesis": "кто заведующий кафедрой",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "phrase_id": 2,
+      "reference": "кто руководит кафедрой",
+      "hypothesis": "кто руководит кафедры",
+      "exact_match": false,
+      "wer": 0.3333,
+      "cer": 0.0909
+    },
+    {
+      "phrase_id": 3,
+      "reference": "когда основана кафедра",
+      "hypothesis": "когда основана кафедры",
+      "exact_match": false,
+      "wer": 0.3333,
+      "cer": 0.0455
+    },
+    {
+      "phrase_id": 4,
+      "reference": "в каком году создали кафедру",
+      "hypothesis": "в каком году создали кафедру",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "phrase_id": 5,
+      "reference": "какие научные направления",
+      "hypothesis": "какие научное направление",
+      "exact_match": false,
+      "wer": 0.6667,
+      "cer": 0.08
+    },
+    {
+      "phrase_id": 6,
+      "reference": "чем занимается кафедра",
+      "hypothesis": "чем занимается кафедра",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "phrase_id": 7,
+      "reference": "направления исследований",
+      "hypothesis": "направления исследований",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "phrase_id": 8,
+      "reference": "как связаться с малининой марией анатольевной",
+      "hypothesis": "как связаться с малиной мария на топливный",
+      "exact_match": false,
+      "wer": 0.6667,
+      "cer": 0.2222
+    },
+    {
+      "phrase_id": 9,
+      "reference": "почта малининой марии анатольевны",
+      "hypothesis": "почта малинина и мария анатольевна",
+      "exact_match": false,
+      "wer": 1.0,
+      "cer": 0.1515
+    },
+    {
+      "phrase_id": 10,
+      "reference": "где кабинет малининой марии анатольевны",
+      "hypothesis": "где кабинет малиной марии анатольевна",
+      "exact_match": false,
+      "wer": 0.4,
+      "cer": 0.0769
+    },
+    {
+      "phrase_id": 11,
+      "reference": "как связаться с митрофановым евгением павловичем",
+      "hypothesis": "как связаться с митрофанов евгением павловичем",
+      "exact_match": false,
+      "wer": 0.1667,
+      "cer": 0.0417
+    },
+    {
+      "phrase_id": 12,
+      "reference": "почта митрофанова евгения павловича",
+      "hypothesis": "почты митрофановой евгений павлович",
+      "exact_match": false,
+      "wer": 1.0,
+      "cer": 0.1429
+    },
+    {
+      "phrase_id": 13,
+      "reference": "где найти митрофанова евгения павловича",
+      "hypothesis": "где найти митрофановой евгения павловича",
+      "exact_match": false,
+      "wer": 0.2,
+      "cer": 0.0513
+    },
+    {
+      "phrase_id": 14,
+      "reference": "как связаться с поповой светланой владимировной",
+      "hypothesis": "как связаться с поповой светланой владимировной",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "phrase_id": 15,
+      "reference": "почта поповы светланы владимировны",
+      "hypothesis": "почта по поводу светлана владимировна",
+      "exact_match": false,
+      "wer": 1.0,
+      "cer": 0.1765
+    },
+    {
+      "phrase_id": 16,
+      "reference": "где найти попову светлану владимировну",
+      "hypothesis": "где найти по поводу светлана владимировна",
+      "exact_match": false,
+      "wer": 0.8,
+      "cer": 0.1316
+    },
+    {
+      "phrase_id": 17,
+      "reference": "как связаться с митрофановой ольгой александровой",
+      "hypothesis": "как связаться с митрофановой ольга александровна",
+      "exact_match": false,
+      "wer": 0.3333,
+      "cer": 0.0816
+    },
+    {
+      "phrase_id": 18,
+      "reference": "почта митрофановы ольги александровны",
+      "hypothesis": "почта митрофановой ольги александровны",
+      "exact_match": false,
+      "wer": 0.25,
+      "cer": 0.0541
+    },
+    {
+      "phrase_id": 19,
+      "reference": "где найти митрофанову ольгу александровну",
+      "hypothesis": "где найти митрофанов ольгу александровну",
+      "exact_match": false,
+      "wer": 0.2,
+      "cer": 0.0244
+    },
+    {
+      "phrase_id": 20,
+      "reference": "почта заведующего кафедрой",
+      "hypothesis": "почта заведующего кафедрой",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0
+    },
+    {
+      "phrase_id": 21,
+      "reference": "как связаться с заведующим",
+      "hypothesis": "как связаться заведующим",
+      "exact_match": false,
+      "wer": 0.25,
+      "cer": 0.0769
+    }
+  ]
+}

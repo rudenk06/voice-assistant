@@ -1,0 +1,205 @@
+{
+  "model": "GigaAM-CTC",
+  "total_phrases": 21,
+  "exact_match_accuracy": 0.9048,
+  "total_wer": 0.0225,
+  "total_cer": 0.0042,
+  "general_wer": 0.0455,
+  "names_wer": 0.0149,
+  "substitutions": 2,
+  "deletions": 0,
+  "insertions": 0,
+  "hits": 87,
+  "avg_latency_ms": 1623.1,
+  "details": [
+    {
+      "phrase_id": 1,
+      "reference": "кто заведующий кафедрой",
+      "hypothesis": "кто заведующий кафедрой",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 2416.6
+    },
+    {
+      "phrase_id": 2,
+      "reference": "кто руководит кафедрой",
+      "hypothesis": "кто руководит кафедрой",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1519.8
+    },
+    {
+      "phrase_id": 3,
+      "reference": "когда основана кафедра",
+      "hypothesis": "когда основана кафедра",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1552.8
+    },
+    {
+      "phrase_id": 4,
+      "reference": "в каком году создали кафедру",
+      "hypothesis": "в каком году создали кафедру",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1597.9
+    },
+    {
+      "phrase_id": 5,
+      "reference": "какие научные направления",
+      "hypothesis": "какие научные направления",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1578.4
+    },
+    {
+      "phrase_id": 6,
+      "reference": "чем занимается кафедра",
+      "hypothesis": "чем занимается кафедра",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1526.8
+    },
+    {
+      "phrase_id": 7,
+      "reference": "направления исследований",
+      "hypothesis": "направление исследований",
+      "exact_match": false,
+      "wer": 0.5,
+      "cer": 0.0417,
+      "latency_ms": 1662.4
+    },
+    {
+      "phrase_id": 8,
+      "reference": "как связаться с малининой марией анатольевной",
+      "hypothesis": "как связаться с малининой марией анатольевной",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1669.7
+    },
+    {
+      "phrase_id": 9,
+      "reference": "почта малининой марии анатольевны",
+      "hypothesis": "почта малининой марии анатольевны",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1608.1
+    },
+    {
+      "phrase_id": 10,
+      "reference": "где кабинет малининой марии анатольевны",
+      "hypothesis": "где кабинет малининой марии анатольевны",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1585.5
+    },
+    {
+      "phrase_id": 11,
+      "reference": "как связаться с митрофановым евгением павловичем",
+      "hypothesis": "как связаться с митрофаном евгением павловичем",
+      "exact_match": false,
+      "wer": 0.1667,
+      "cer": 0.0417,
+      "latency_ms": 1669.1
+    },
+    {
+      "phrase_id": 12,
+      "reference": "почта митрофанова евгения павловича",
+      "hypothesis": "почта митрофанова евгения павловича",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1537.6
+    },
+    {
+      "phrase_id": 13,
+      "reference": "где найти митрофанова евгения павловича",
+      "hypothesis": "где найти митрофанова евгения павловича",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1625.4
+    },
+    {
+      "phrase_id": 14,
+      "reference": "как связаться с поповой светланой владимировной",
+      "hypothesis": "как связаться с поповой светланой владимировной",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1520.1
+    },
+    {
+      "phrase_id": 15,
+      "reference": "почта поповой светланы владимировны",
+      "hypothesis": "почта поповой светланы владимировны",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1554.7
+    },
+    {
+      "phrase_id": 16,
+      "reference": "где найти попову светлану владимировну",
+      "hypothesis": "где найти попову светлану владимировну",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1550.1
+    },
+    {
+      "phrase_id": 17,
+      "reference": "как связаться с митрофановой ольгой александровной",
+      "hypothesis": "как связаться с митрофановой ольгой александровной",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1603.0
+    },
+    {
+      "phrase_id": 18,
+      "reference": "почта митрофановой ольги александровны",
+      "hypothesis": "почта митрофановой ольги александровны",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1534.1
+    },
+    {
+      "phrase_id": 19,
+      "reference": "где найти митрофанову ольгу александровну",
+      "hypothesis": "где найти митрофанову ольгу александровну",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1537.1
+    },
+    {
+      "phrase_id": 20,
+      "reference": "почта заведующего кафедрой",
+      "hypothesis": "почта заведующего кафедрой",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1622.1
+    },
+    {
+      "phrase_id": 21,
+      "reference": "как связаться с заведующим",
+      "hypothesis": "как связаться с заведующим",
+      "exact_match": true,
+      "wer": 0.0,
+      "cer": 0.0,
+      "latency_ms": 1614.1
+    }
+  ]
+}

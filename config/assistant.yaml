@@ -1,0 +1,46 @@
+audio:
+  sample_rate: 16000
+  channels: 1
+  silence_threshold: 0.03
+  silence_duration: 1.5
+  max_record_seconds: 15
+
+asr:
+  model_path: data/models/gigaam-v3-ctc-onnx
+
+wake_word:
+  enabled: false
+  phrase: "окей кафедра"
+
+tts:
+  model_path: data/models/piper-ru_RU-irina-medium
+  sample_rate: 22050
+
+rag:
+  embedder:
+    model_path: data/models/multilingual-e5-base-onnx
+  index:
+    faiss_path: data/index/faiss.index
+    db_path: data/index/chunks.db
+  documents_path: data/documents
+  chunk_size: 200
+  chunk_overlap: 0
+  top_k: 3
+  generator:
+    mode: template  # template | llm
+    model_path: data/models/vikhr-1b-q3_k_m.gguf
+    max_tokens: 100
+    context_size: 512
+
+hardware:
+  button:
+    gpio_pin: 17
+    use_keyboard_fallback: true
+
+sounds:
+  activate: data/sounds/activate.wav
+  error: data/sounds/error.wav
+
+logging:
+  level: INFO
+  file: logs/assistant.log

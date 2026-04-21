@@ -1,0 +1,16 @@
+[Unit]
+Description=Voice Assistant for University Department
+After=sound.target
+Wants=sound.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/voice-assistant
+ExecStart=/home/pi/voice-assistant/.venv/bin/python -m src.main
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
