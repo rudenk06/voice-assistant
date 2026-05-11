@@ -25,17 +25,23 @@ rag:
   documents_path: data/documents
   chunk_size: 200
   chunk_overlap: 0
-  use_llm: false
+  use_llm: true
   llm_backend: llama_cpp
-  llm_model_path: data/models/qwen2.5-1.5b-instruct-q4.gguf
-  llm_max_tokens: 80
+  llm_model_path: data/models/llm/qwen2.5-1.5b-instruct-q4_k_m.gguf
+  llm_context_size: 2048
+  llm_threads: 3
+  llm_max_tokens: 64
   llm_temperature: 0.1
-  top_k: 3
+  llm_unload_after_generate: false
+  top_k: 2
+  contact_top_k: 5
+  overview_top_k: 5
+  department_top_k: 5
   generator:
     mode: template  # template | llm
     model_path: data/models/vikhr-1b-q3_k_m.gguf
     max_tokens: 100
-    context_size: 512
+    context_size: 2048
 
 hardware:
   button:

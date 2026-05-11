@@ -12,8 +12,9 @@ from src.audio.player import Player
 from src.asr.recognizer import Recognizer
 from src.rag.embedder import Embedder
 from src.rag.retriever import Retriever
-from src.rag.generator import Generator
+from src.rag.generator import Generator, detect_intent
 from src.tts.synthesizer import Synthesizer
+from src.tts.text_normalizer import normalize_for_tts
 from src.hardware.button import Button
 from src.asr.wake_word import WakeWordDetector
 from src.rag.watcher import DocumentWatcher
@@ -58,7 +59,9 @@ class VoiceAssistant:
             llm_model_path=rag_cfg.get("llm_model_path", gen_cfg.get("model_path")),
             llm_max_tokens=rag_cfg.get("llm_max_tokens", gen_cfg.get("max_tokens", 80)),
             llm_temperature=rag_cfg.get("llm_temperature", 0.1),
-            context_size=gen_cfg.get("context_size", 2048),
+            context_size=rag_cfg.get("llm_context_size", gen_cfg.get("context_size", 2048)),
+            llm_threads=rag_cfg.get("llm_threads", 4),
+            llm_unload_after_generate=rag_cfg.get("llm_unload_after_generate", True),
             mode=gen_cfg.get("mode", "template"),
         )
 
@@ -123,15 +126,24 @@ class VoiceAssistant:
 
             # 4. RAG: embed → search → generate
             query_embedding = self.embedder.embed([text])
+            rag_cfg = self.config["rag"]
+            intent = detect_intent(text)
+            if intent == "contact":
+                top_k = rag_cfg.get("contact_top_k", rag_cfg.get("top_k", 3))
+            elif intent == "department":
+                top_k = rag_cfg.get("department_top_k", rag_cfg.get("overview_top_k", rag_cfg.get("top_k", 3)))
+            elif intent == "overview":
+                top_k = rag_cfg.get("overview_top_k", rag_cfg.get("top_k", 3))
+            else:
+                top_k = rag_cfg.get("top_k", 3)
 
             chunks = self.retriever.search(
                 query_embedding,
-                top_k=self.config["rag"].get("top_k", 3),
+                top_k=top_k,
             )
 
             self.generator.load()
             answer = self.generator.generate(text, chunks)
-            self.generator.unload()
 
             logger.info(f"Answer: {answer}")
 
@@ -149,7 +161,10 @@ class VoiceAssistant:
 
     def _speak(self, text: str):
         """Synthesize and play text."""
-        audio = self.synthesizer.synthesize(text)
+        tts_text = normalize_for_tts(text)
+        logger.info(f"Original answer for TTS: {text}")
+        logger.info(f"TTS-normalized answer: {tts_text}")
+        audio = self.synthesizer.synthesize(tts_text)
         if len(audio) > 0:
             self.player.play(audio, self.synthesizer.sample_rate)
 
@@ -214,6 +229,7 @@ class VoiceAssistant:
         logger.info("Shutting down...")
         self._running = False
         self.embedder.unload()
+        self.generator.unload(force=True)
         self.button.cleanup()
         if self.wake_word_detector:
             self.wake_word_detector.stop()
