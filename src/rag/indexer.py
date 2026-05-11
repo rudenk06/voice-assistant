@@ -15,6 +15,10 @@ from src.rag.embedder import Embedder
 logger = logging.getLogger(__name__)
 
 
+def _create_id_map_index(dim: int):
+    return faiss.IndexIDMap(faiss.IndexFlatIP(dim))
+
+
 class Indexer:
     def __init__(self, faiss_path: str, db_path: str, embedder: Embedder, loader: DocumentLoader):
         self.faiss_path = faiss_path
@@ -116,7 +120,11 @@ class Indexer:
 
         if not all_chunks:
             logger.info("No new chunks to index")
-            self._load_or_create_index()
+            if self._rebuild_id_map_from_existing_index():
+                logger.info("Rebuilt FAISS id map from existing vectors")
+            else:
+                logger.info("Rebuilding FAISS index from SQLite")
+                self._rebuild_full_index()
             return
 
         # Compute embeddings (is_query=False — это документы, не запросы)
@@ -159,11 +167,12 @@ class Indexer:
 
         if not rows:
             dim = self._get_embedding_dim()
-            self.index = faiss.IndexFlatIP(dim)
+            self.index = _create_id_map_index(dim)
             self._save_index()
             return
 
         texts = [r[1] for r in rows]
+        embedding_ids = np.array([r[0] for r in rows], dtype=np.int64)
 
         self.embedder.load()
         batch_size = 32
@@ -175,8 +184,8 @@ class Indexer:
         embeddings = np.vstack(all_embeddings).astype(np.float32)
         self.embedder.unload()
 
-        self.index = faiss.IndexFlatIP(embeddings.shape[1])
-        self.index.add(embeddings)
+        self.index = _create_id_map_index(embeddings.shape[1])
+        self.index.add_with_ids(embeddings, embedding_ids)
         self._save_index()
 
     def _load_or_create_index(self):
@@ -184,7 +193,45 @@ class Indexer:
             self.index = faiss.read_index(self.faiss_path)
         else:
             dim = self._get_embedding_dim()
-            self.index = faiss.IndexFlatIP(dim)
+            self.index = _create_id_map_index(dim)
+
+    def _rebuild_id_map_from_existing_index(self) -> bool:
+        """Wrap an existing flat index with SQLite embedding ids when possible."""
+        if not os.path.exists(self.faiss_path):
+            return False
+
+        old_index = faiss.read_index(self.faiss_path)
+        if isinstance(old_index, faiss.IndexIDMap):
+            self.index = old_index
+            return True
+
+        with sqlite3.connect(self.db_path) as conn:
+            rows = conn.execute(
+                "SELECT embedding_id FROM chunks ORDER BY embedding_id"
+            ).fetchall()
+
+        if old_index.ntotal == 0 and not rows:
+            self.index = _create_id_map_index(old_index.d)
+            self._save_index()
+            return True
+
+        if old_index.ntotal != len(rows):
+            logger.warning(
+                "Cannot reuse existing FAISS vectors: index has %s vectors, "
+                "SQLite has %s chunks",
+                old_index.ntotal,
+                len(rows),
+            )
+            return False
+
+        embeddings = np.zeros((old_index.ntotal, old_index.d), dtype=np.float32)
+        old_index.reconstruct_n(0, old_index.ntotal, embeddings)
+        embedding_ids = np.array([r[0] for r in rows], dtype=np.int64)
+
+        self.index = _create_id_map_index(old_index.d)
+        self.index.add_with_ids(embeddings, embedding_ids)
+        self._save_index()
+        return True
 
     def _save_index(self):
         os.makedirs(os.path.dirname(self.faiss_path), exist_ok=True)

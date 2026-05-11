@@ -25,6 +25,11 @@ rag:
   documents_path: data/documents
   chunk_size: 200
   chunk_overlap: 0
+  use_llm: false
+  llm_backend: llama_cpp
+  llm_model_path: data/models/qwen2.5-1.5b-instruct-q4.gguf
+  llm_max_tokens: 80
+  llm_temperature: 0.1
   top_k: 3
   generator:
     mode: template  # template | llm

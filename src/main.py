@@ -53,10 +53,13 @@ class VoiceAssistant:
 
         gen_cfg = rag_cfg.get("generator", {})
         self.generator = Generator(
-            model_path=gen_cfg.get("model_path"),
+            use_llm=rag_cfg.get("use_llm", gen_cfg.get("mode") == "llm"),
+            llm_backend=rag_cfg.get("llm_backend", "llama_cpp"),
+            llm_model_path=rag_cfg.get("llm_model_path", gen_cfg.get("model_path")),
+            llm_max_tokens=rag_cfg.get("llm_max_tokens", gen_cfg.get("max_tokens", 80)),
+            llm_temperature=rag_cfg.get("llm_temperature", 0.1),
+            context_size=gen_cfg.get("context_size", 2048),
             mode=gen_cfg.get("mode", "template"),
-            max_tokens=gen_cfg.get("max_tokens", 100),
-            context_size=gen_cfg.get("context_size", 512),
         )
 
         self.synthesizer = Synthesizer(

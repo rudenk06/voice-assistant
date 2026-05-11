@@ -17,6 +17,11 @@ class Retriever:
         """Load FAISS index from disk."""
         self.index = faiss.read_index(self.faiss_path)
         logger.info(f"FAISS index loaded: {self.index.ntotal} vectors")
+        if not isinstance(self.index, faiss.IndexIDMap):
+            logger.warning(
+                "FAISS index has no explicit ids. Rebuild it with "
+                "`python3 -m src.rag.indexer` to guarantee chunk mapping."
+            )
 
     def search(self, query_embedding: np.ndarray, top_k: int = 3) -> list[dict]:
         """Search for most relevant chunks.
