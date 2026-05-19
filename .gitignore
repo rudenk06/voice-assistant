@@ -1,10 +1,40 @@
-data/models/
-data/index/
+# Python environments and caches
 .venv/
 __pycache__/
 *.pyc
-logs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 *.egg-info/
 dist/
 build/
 .eggs/
+
+# Runtime data generated locally
+logs/
+*.log
+data/models/
+data/index/
+data/**/*.onnx
+data/**/*.gguf
+data/**/*.bin
+data/**/*.pt
+data/**/*.pth
+data/**/*.safetensors
+
+# Local audio dumps
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+!data/sounds/*.wav
+
+# Local configuration and editor files
+.env
+.env.*
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
